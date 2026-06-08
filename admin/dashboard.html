@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Spice & Ember Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <div class="admin-body">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <h2>Spice <span>&amp;</span> Ember</h2>
+        <p>Admin Panel</p>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="active"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="bookings.html"><span class="nav-icon">📅</span> Bookings</a>
+        <a href="orders.html"><span class="nav-icon">🛒</span> Orders</a>
+        <a href="menu-manage.html"><span class="nav-icon">🍽️</span> Menu</a>
+        <a href="index.html" style="margin-top:auto;border-top:1px solid var(--border);padding-top:16px"><span class="nav-icon">🚪</span> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <div class="admin-header-left">
+          <h1>Dashboard</h1>
+          <p>Overview of your restaurant operations</p>
+        </div>
+        <div class="admin-header-right">
+          <div class="admin-user">
+            <div class="admin-avatar">A</div>
+            <div class="admin-user-info">
+              <div class="admin-user-name">Admin</div>
+              <div class="admin-user-role">Manager</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid" id="dashboardCards">
+        <div class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div class="dashboard-card-icon gold">💰</div>
+            <span class="dashboard-card-change up">+12%</span>
+          </div>
+          <div class="dashboard-card-value" id="totalRevenue">$0</div>
+          <div class="dashboard-card-label">Today's Revenue</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div class="dashboard-card-icon blue">📋</div>
+            <span class="dashboard-card-change up">+5%</span>
+          </div>
+          <div class="dashboard-card-value" id="totalOrders">0</div>
+          <div class="dashboard-card-label">Total Orders</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div class="dashboard-card-icon green">✅</div>
+            <span class="dashboard-card-change up">+8%</span>
+          </div>
+          <div class="dashboard-card-value" id="activeBookings">0</div>
+          <div class="dashboard-card-label">Active Bookings</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div class="dashboard-card-icon red">👥</div>
+            <span class="dashboard-card-change down">-2%</span>
+          </div>
+          <div class="dashboard-card-value" id="totalGuests">0</div>
+          <div class="dashboard-card-label">Guests Today</div>
+        </div>
+      </div>
+
+      <div class="admin-table-wrapper">
+        <div class="admin-table-header">
+          <h3>Recent Orders</h3>
+          <a href="orders.html" class="admin-btn admin-btn-primary">View All</a>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="recentOrdersTable"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/menu-data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

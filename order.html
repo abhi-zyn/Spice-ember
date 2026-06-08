@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Online — Spice & Ember</title>
+  <meta name="description" content="Order online from Spice & Ember for pickup or delivery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <button class="nav-menu-btn" aria-label="Menu">☰</button>
+        <a href="index.html" class="navbar-brand">Spice <span>&amp;</span> Ember</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book-table.html">Reservations</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="navbar-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon" style="display:none">🌙</span>
+        </button>
+        <a href="order.html" class="nav-cart-btn" aria-label="Cart">
+          🛒
+          <span class="cart-badge" style="display:none">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="book-table.html">Reservations</a>
+    <a href="order.html">Order Online</a>
+    <a href="about.html">About Us</a>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-tag">✦ Order</span>
+        <h1>Your Cart</h1>
+        <p>Review your items and proceed to checkout. Free delivery on orders over $30.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cart-layout">
+        <div class="cart-main">
+          <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <a href="menu.html" class="btn btn-outline btn-sm">+ Add More Items</a>
+          </div>
+          <div class="cart-items"></div>
+        </div>
+        <div class="cart-sidebar">
+          <div class="cart-summary"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Spice <span>&amp;</span> Ember</h3>
+          <p>Where fire meets flavor. An unforgettable dining experience crafted through the art of flame and spice.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">👍</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="menu.html">Our Menu</a>
+          <a href="book-table.html">Reservations</a>
+          <a href="order.html">Order Online</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="footer-links">
+          <h4>Hours</h4>
+          <p>Mon–Thu: 11AM–10PM</p>
+          <p>Fri–Sat: 11AM–11PM</p>
+          <p>Sun: 12PM–9PM</p>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <p>42 Flame Street</p>
+          <p>Culinary District, NY 10001</p>
+          <p>+1 (555) 123-4567</p>
+          <p>hello@spiceandember.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Spice &amp; Ember. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Management — Spice & Ember Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <div class="admin-body">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <h2>Spice <span>&amp;</span> Ember</h2>
+        <p>Admin Panel</p>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="bookings.html"><span class="nav-icon">📅</span> Bookings</a>
+        <a href="orders.html"><span class="nav-icon">🛒</span> Orders</a>
+        <a href="menu-manage.html" class="active"><span class="nav-icon">🍽️</span> Menu</a>
+        <a href="index.html" style="margin-top:auto;border-top:1px solid var(--border);padding-top:16px"><span class="nav-icon">🚪</span> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <div class="admin-header-left">
+          <h1>Menu Management</h1>
+          <p>Add, edit, or remove menu items</p>
+        </div>
+        <div class="admin-header-right">
+          <div class="admin-user">
+            <div class="admin-avatar">A</div>
+            <div class="admin-user-info">
+              <div class="admin-user-name">Admin</div>
+              <div class="admin-user-role">Manager</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-manage-grid">
+        <div class="menu-form-card">
+          <h3>Add New Item</h3>
+          <form id="addMenuItemForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="itemPrice">Price ($)</label>
+                <input type="number" id="itemPrice" name="price" step="0.01" min="0" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="itemDesc">Description</label>
+              <textarea id="itemDesc" name="description" rows="2" required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="itemCategory">Category</label>
+                <select id="itemCategory" name="category" required>
+                  <option value="starters">Starters</option>
+                  <option value="mains">Mains</option>
+                  <option value="sides">Sides</option>
+                  <option value="desserts">Desserts</option>
+                  <option value="beverages">Beverages</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="itemType">Type</label>
+                <select id="itemType" name="type" required>
+                  <option value="veg">Vegetarian</option>
+                  <option value="non-veg">Non-Vegetarian</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="itemImage">Image URL</label>
+                <input type="url" id="itemImage" name="image" placeholder="https://...">
+              </div>
+              <div class="form-group">
+                <label for="itemSpicy">Spice Level (0-3)</label>
+                <input type="number" id="itemSpicy" name="spicy" min="0" max="3" value="0">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Add Item</button>
+          </form>
+        </div>
+
+        <div class="menu-form-card">
+          <h3>Current Menu Items</h3>
+          <div id="menuItemsList" style="max-height:500px;overflow-y:auto"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/menu-data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservations — Spice & Ember</title>
+  <meta name="description" content="Book a table at Spice & Ember for an unforgettable fire-crafted dining experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <button class="nav-menu-btn" aria-label="Menu">☰</button>
+        <a href="index.html" class="navbar-brand">Spice <span>&amp;</span> Ember</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book-table.html" class="active">Reservations</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="navbar-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon" style="display:none">🌙</span>
+        </button>
+        <a href="order.html" class="nav-cart-btn" aria-label="Cart">
+          🛒
+          <span class="cart-badge" style="display:none">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="book-table.html">Reservations</a>
+    <a href="order.html">Order Online</a>
+    <a href="about.html">About Us</a>
+  </div>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-tag">✦ Reserve</span>
+        <h1>Book a Table</h1>
+        <p>Join us for an evening of fire-crafted cuisine. Reserve your table below and we'll prepare something unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="booking-layout">
+        <div class="booking-info">
+          <div class="booking-info-card">
+            <h3>Hours</h3>
+            <div class="info-row"><span>Mon–Thu</span><span>11:00 AM – 10:00 PM</span></div>
+            <div class="info-row"><span>Fri–Sat</span><span>11:00 AM – 11:00 PM</span></div>
+            <div class="info-row"><span>Sunday</span><span>12:00 PM – 9:00 PM</span></div>
+          </div>
+          <div class="booking-info-card">
+            <h3>Contact</h3>
+            <p>📞 +1 (555) 123-4567</p>
+            <p>✉️ hello@spiceandember.com</p>
+          </div>
+          <div class="booking-info-card">
+            <h3>Private Events</h3>
+            <p>Planning a special occasion? Our private dining room accommodates up to 40 guests. Contact us for details.</p>
+          </div>
+        </div>
+
+        <form class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of Guests *</label>
+              <select id="guests" name="guests" required>
+                <option value="">Select...</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7">7 Guests</option>
+                <option value="8">8+ Guests</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date *</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Time *</label>
+              <input type="time" id="time" name="time" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="occasion">
+                <option value="">None</option>
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="date">Date Night</option>
+                <option value="business">Business Dinner</option>
+                <option value="celebration">Celebration</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="requests">Special Requests</label>
+              <textarea id="requests" name="requests" rows="2" placeholder="Dietary restrictions, seating preferences..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Confirm Reservation</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Spice <span>&amp;</span> Ember</h3>
+          <p>Where fire meets flavor. An unforgettable dining experience crafted through the art of flame and spice.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">👍</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="menu.html">Our Menu</a>
+          <a href="book-table.html">Reservations</a>
+          <a href="order.html">Order Online</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="footer-links">
+          <h4>Hours</h4>
+          <p>Mon–Thu: 11AM–10PM</p>
+          <p>Fri–Sat: 11AM–11PM</p>
+          <p>Sun: 12PM–9PM</p>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <p>42 Flame Street</p>
+          <p>Culinary District, NY 10001</p>
+          <p>+1 (555) 123-4567</p>
+          <p>hello@spiceandember.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Spice &amp; Ember. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

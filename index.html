@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spice & Ember — Where Fire Meets Flavor</title>
+  <meta name="description" content="Spice & Ember - Premium fire-crafted dining experience. Smoked meats, grilled specialties, and craft cocktails.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <button class="nav-menu-btn" aria-label="Menu">☰</button>
+        <a href="index.html" class="navbar-brand">Spice <span>&amp;</span> Ember</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book-table.html">Reservations</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="navbar-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon" style="display:none">🌙</span>
+        </button>
+        <a href="order.html" class="nav-cart-btn" aria-label="Cart">
+          🛒
+          <span class="cart-badge" style="display:none">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="book-table.html">Reservations</a>
+    <a href="order.html">Order Online</a>
+    <a href="about.html">About Us</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🔥 Now Open for Dinner</div>
+      <h1 class="hero-title">Where Fire<br><span>Meets Flavor</span></h1>
+      <p class="hero-subtitle">Wood-fired. Spice-crusted. Ember-roasted. Experience dining reimagined through the primal power of flame.</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-primary btn-lg">Explore Our Menu</a>
+        <a href="book-table.html" class="btn btn-outline btn-lg">Reserve a Table</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">4.9</span>
+          <span class="hero-stat-label">Rating</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">500+</span>
+          <span class="hero-stat-label">Reviews</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">15+</span>
+          <span class="hero-stat-label">Years</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- FEATURED MENU -->
+  <section class="section featured-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">✦ From Our Fire</span>
+        <h2 class="section-title">Signature Dishes</h2>
+        <p class="section-desc">Hand-picked favorites that define the Spice & Ember experience.</p>
+      </div>
+      <div class="featured-grid menu-grid"></div>
+      <div class="section-footer">
+        <a href="menu.html" class="btn btn-outline">View Full Menu →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="section experience-section">
+    <div class="container">
+      <div class="experience-grid">
+        <div class="experience-content">
+          <span class="section-tag">✦ The Experience</span>
+          <h2 class="section-title">Crafted by Flame,<br>Perfected by Time</h2>
+          <p>Every dish at Spice & Ember begins with the same element that has captivated humanity for millennia — fire. Our chefs master the delicate dance between heat and ingredient, coaxing out flavors you never knew existed.</p>
+          <div class="experience-features">
+            <div class="exp-feature">
+              <span class="exp-icon">🔥</span>
+              <div>
+                <h4>Wood-Fired Cooking</h4>
+                <p>Oak, hickory, and mesquite — each wood chosen to complement specific dishes.</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <span class="exp-icon">🌿</span>
+              <div>
+                <h4>Farm-Fresh Ingredients</h4>
+                <p>Sourced daily from local farms and purveyors who share our passion for quality.</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <span class="exp-icon">🍷</span>
+              <div>
+                <h4>Curated Pairings</h4>
+                <p>An award-winning wine list and craft cocktails designed to elevate every bite.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experience-image">
+          <div class="exp-img-main"></div>
+          <div class="exp-img-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">✦ Guest Love</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+      </div>
+      <div class="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <h2>Join the Ember Club</h2>
+          <p>Be the first to know about new menu items, exclusive events, and special offers.</p>
+          <form class="newsletter-form">
+            <div class="newsletter-input-group">
+              <input type="email" placeholder="Enter your email" required>
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Spice <span>&amp;</span> Ember</h3>
+          <p>Where fire meets flavor. An unforgettable dining experience crafted through the art of flame and spice.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">👍</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="menu.html">Our Menu</a>
+          <a href="book-table.html">Reservations</a>
+          <a href="order.html">Order Online</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="footer-links">
+          <h4>Hours</h4>
+          <p>Mon–Thu: 11AM–10PM</p>
+          <p>Fri–Sat: 11AM–11PM</p>
+          <p>Sun: 12PM–9PM</p>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <p>42 Flame Street</p>
+          <p>Culinary District, NY 10001</p>
+          <p>+1 (555) 123-4567</p>
+          <p>hello@spiceandember.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Spice &amp; Ember. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
