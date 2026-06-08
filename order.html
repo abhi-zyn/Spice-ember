@@ -29,6 +29,12 @@
           <span class="sun-icon">☀️</span>
           <span class="moon-icon" style="display:none">🌙</span>
         </button>
+        <button class="auth-login-btn nav-icon-btn" aria-label="Sign in" title="Sign in">👤</button>
+        <div class="auth-user-menu" style="display:none">
+          <span class="auth-avatar"></span>
+          <span class="auth-user-name"></span>
+          <button class="auth-logout-btn" title="Sign out">🚪</button>
+        </div>
         <a href="order.html" class="nav-cart-btn" aria-label="Cart">
           🛒
           <span class="cart-badge" style="display:none">0</span>
@@ -73,6 +79,80 @@
     </div>
   </section>
 
+  <!-- CHECKOUT SECTION -->
+  <section class="section checkout-section" id="checkoutSection" style="display:none">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">✦ Checkout</span>
+        <h2 class="section-title">Delivery Details</h2>
+      </div>
+      <div class="checkout-layout">
+        <form class="checkout-form" id="checkoutForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkoutName">Full Name *</label>
+              <input type="text" id="checkoutName" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="checkoutEmail">Email *</label>
+              <input type="email" id="checkoutEmail" name="email" required placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkoutPhone">Phone *</label>
+              <input type="tel" id="checkoutPhone" name="phone" required placeholder="(555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="checkoutAddress">Delivery Address *</label>
+              <input type="text" id="checkoutAddress" name="address" required placeholder="123 Main St, Apt 4B">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="checkoutNotes">Order Notes</label>
+            <textarea id="checkoutNotes" name="notes" rows="2" placeholder="Any special instructions..."></textarea>
+          </div>
+          <div class="checkout-summary-preview" id="checkoutSummaryPreview"></div>
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="payBtn">
+            💳 Pay with Razorpay
+          </button>
+          <button type="button" class="btn btn-outline btn-full" id="backToCartBtn">← Back to Cart</button>
+        </form>
+        <div class="checkout-info">
+          <div class="booking-info-card">
+            <h3>Why Sign In?</h3>
+            <p>Sign in to save your details for faster checkout next time and track your order status.</p>
+            <button class="btn btn-outline btn-sm auth-login-btn" style="margin-top:8px">Sign In</button>
+          </div>
+          <div class="booking-info-card">
+            <h3>Secure Payments</h3>
+            <p>Payments are processed securely via Razorpay. We never store your card details.</p>
+          </div>
+          <div class="booking-info-card">
+            <h3>Delivery Info</h3>
+            <p>Free delivery on orders over $30. Estimated delivery time: 30-45 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER CONFIRMATION -->
+  <section class="section confirmation-section" id="confirmationSection" style="display:none">
+    <div class="container">
+      <div class="confirmation-card">
+        <div class="confirmation-icon">✅</div>
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for your order. We'll start preparing it right away.</p>
+        <div class="confirmation-details" id="confirmationDetails"></div>
+        <div class="confirmation-actions">
+          <a href="menu.html" class="btn btn-primary">Order More</a>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -112,8 +192,12 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/menu-data.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/razorpay.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
 </body>
