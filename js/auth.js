@@ -316,4 +316,110 @@ const Auth = {
     if (!btn) return;
     btn.classList.remove('loading');
     btn.classList.add('success');
-    setTimeout(function() { btn.classList.remove('success');
+    setTimeout(function() { btn.classList.remove('success'); }, 2000);
+  },
+
+  /* ===== FOCUS TRAP ===== */
+  focusTrap: function(modal) {
+    var focusable = modal.querySelectorAll('button, input, [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+
+    var trapHandler = function(e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+
+    modal.addEventListener('keydown', trapHandler);
+    first.focus();
+    modal._trapHandler = trapHandler;
+  },
+
+  /* ===== EVENT BINDINGS ===== */
+  bindEvents: function() {
+    var self = this;
+
+    // Close button
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#authClose')) self.closeModal();
+      if (e.target.id === 'authOverlay') self.closeModal();
+    });
+
+    // Tab switching
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.auth-tab-btn')) {
+        var tab = e.target.closest('.auth-tab-btn').dataset.tab;
+        self.switchTab(tab);
+      }
+      if (e.target.id === 'gotoSignup') self.switchTab('signup');
+      if (e.target.id === 'gotoLogin') self.switchTab('login');
+      if (e.target.id === 'magicBackBtn') self.switchTab('login');
+    });
+
+    // Login form
+    document.addEventListener('submit', function(e) {
+      if (e.target.id === 'loginForm') {
+        e.preventDefault();
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+        self.setButtonLoading('loginSubmit', true);
+        self.signIn(email, password).then(function() {
+          self.setButtonSuccess('loginSubmit');
+        }).catch(function() {
+          self.setButtonLoading('loginSubmit', false);
+        });
+      }
+      if (e.target.id === 'signupForm') {
+        e.preventDefault();
+        var name = document.getElementById('signupName').value;
+        var email = document.getElementById('signupEmail').value;
+        var password = document.getElementById('signupPassword').value;
+        self.setButtonLoading('signupSubmit', true);
+        self.signUp(email, password, name).then(function() {
+          self.setButtonSuccess('signupSubmit');
+        }).catch(function() {
+          self.setButtonLoading('signupSubmit', false);
+        });
+      }
+    });
+
+    // Google OAuth
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#googleLoginBtn') || e.target.closest('#googleSignupBtn')) {
+        self.signInWithGoogle();
+      }
+    });
+
+    // Navbar auth buttons
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.auth-login-btn') || e.target.closest('.auth-login-btn-mobile')) {
+        self.openModal('login');
+      }
+      if (e.target.closest('.auth-logout-btn')) {
+        self.signOut();
+      }
+    });
+
+    // ESC key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var overlay = document.getElementById('authOverlay');
+        if (overlay && overlay.classList.contains('active')) {
+          self.closeModal();
+        }
+      }
+    });
+  }
+};
+
+// Auto-init when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { Auth.init(); });
+} else {
+  Auth.init();
+}

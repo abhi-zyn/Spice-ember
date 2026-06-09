@@ -10,7 +10,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const RAZORPAY_KEY_SECRET = Deno.env.get("RAZORPAY_KEY_SECRET")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const SUPABASE_SECRET_KEY = Deno.env.get("SUPABASE_SECRET_KEY")!;
 
 interface VerifyRequest {
   razorpay_payment_id: string;
@@ -41,7 +41,7 @@ serve(async (req: Request) => {
 
   try {
     // --- Validate environment variables ---
-    if (!RAZORPAY_KEY_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    if (!RAZORPAY_KEY_SECRET || !SUPABASE_URL || !SUPABASE_SECRET_KEY) {
       console.error("Missing required environment variables");
       return new Response(
         JSON.stringify({ error: "Server configuration error" }),
@@ -101,7 +101,7 @@ serve(async (req: Request) => {
     }
 
     // --- Signature valid: save to Supabase ---
-    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, {
       auth: { persistSession: false },
     });
 

@@ -38,7 +38,7 @@ In **Supabase Dashboard** → **Settings** → **Edge Functions**, add these sec
 | `RAZORPAY_KEY_SECRET` | your key secret | Razorpay Dashboard → Settings → API Keys |
 | `RAZORPAY_WEBHOOK_SECRET` | your webhook secret | Razorpay Dashboard → Settings → Webhooks |
 | `SUPABASE_URL` | `https://rbwrvrwuxndzcstzurdk.supabase.co` | Supabase Dashboard → Settings → API |
-| `SUPABASE_SERVICE_ROLE_KEY` | your `service_role` key | Supabase Dashboard → Settings → API |
+| `SUPABASE_SECRET_KEY` | your `secret` key | Supabase Dashboard → Settings → API |
 
 ---
 
@@ -148,7 +148,7 @@ Expected response:
 | `RAZORPAY_KEY_SECRET` | Secret Razorpay API key — used to create orders and verify signatures |
 | `RAZORPAY_WEBHOOK_SECRET` | Secret used to verify webhook requests from Razorpay |
 | `SUPABASE_URL` | Supabase project URL for database access |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key — bypasses RLS, used only by Edge Functions |
+| `SUPABASE_SECRET_KEY` | Supabase service role key — bypasses RLS, used only by Edge Functions |
 
 ### Cloudflare Pages Environment Variables (set in Dashboard)
 
@@ -173,7 +173,7 @@ Expected response:
 ### NEVER commit these to GitHub:
 - ❌ `RAZORPAY_KEY_SECRET`
 - ❌ `RAZORPAY_WEBHOOK_SECRET`
-- ❌ `SUPABASE_SERVICE_ROLE_KEY`
+- ❌ `SUPABASE_SECRET_KEY`
 - ❌ Any `.env` or `.env.local` file
 - ❌ Any file containing real secret values
 

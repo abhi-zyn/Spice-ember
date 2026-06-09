@@ -24,8 +24,8 @@ CREATE INDEX IF NOT EXISTS idx_payments_order_id ON payments(order_id);
 -- Index for looking up payments by user_id
 CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id);
 
--- RLS: only service role can access (Edge Functions use service_role key)
+-- RLS: only secret key can access (Edge Functions use secret key)
 ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 
 -- No public/anonymous access to payments
--- Edge Functions use the service_role key which bypasses RLS
+-- Edge Functions use the secret key which bypasses RLS

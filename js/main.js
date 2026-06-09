@@ -21,6 +21,80 @@ const App = {
     this.initStatsCounter();
     this.initSmoothScroll();
     this.initLazyLoading();
+    this.initScrollReveal();
+    this.initCustomCursor();
+  },
+
+  /* ===== SCROLL REVEAL ANIMATIONS ===== */
+  initScrollReveal() {
+    const reveals = document.querySelectorAll('.section-header, .section-tag, .section-title, .section-desc, .section-footer, .experience-content, .experience-image, .testimonial-card, .value-card, .team-card, .stat-card, .exp-feature, .about-content, .about-image, .footer-brand, .footer-links, .newsletter-card, .booking-info-card, .booking-form, .menu-card, .featured-grid .menu-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Add staggered delay for grid items
+          const delay = entry.target.closest('.testimonials-grid, .values-grid, .team-grid, .stats-grid, .featured-grid, .menu-grid') 
+            ? (index % 4) * 80 
+            : 0;
+          
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  },
+
+  /* ===== CUSTOM CURSOR (Desktop Only) ===== */
+  initCustomCursor() {
+    if (!('ontouchstart' in window)) {
+      const cursor = document.createElement('div');
+      cursor.className = 'custom-cursor';
+      document.body.appendChild(cursor);
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Smooth cursor follow
+      const animateCursor = () => {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        cursorX += dx * 0.15;
+        cursorY += dy * 0.15;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        requestAnimationFrame(animateCursor);
+      };
+      animateCursor();
+
+      // Scale on hover
+      const interactiveElements = 'a, button, .menu-card, .testimonial-card, .value-card, .team-card, .stat-card, input, .category-pill';
+      document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveElements)) {
+          cursor.classList.add('hover');
+        }
+      });
+      document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveElements)) {
+          cursor.classList.remove('hover');
+        }
+      });
+    }
   },
 
   /* ===== MENU RENDERING ===== */

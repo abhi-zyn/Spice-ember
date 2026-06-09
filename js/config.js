@@ -229,6 +229,7 @@ const Utils = {
     const menuBtn = document.querySelector('.nav-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.mobile-menu-overlay');
+    const closeBtn = document.querySelector('.mobile-menu-close');
     if (!menuBtn || !mobileMenu || !overlay) return;
 
     const toggle = () => {
@@ -239,6 +240,7 @@ const Utils = {
 
     menuBtn.addEventListener('click', toggle);
     overlay.addEventListener('click', toggle);
+    if (closeBtn) closeBtn.addEventListener('click', toggle);
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', toggle);

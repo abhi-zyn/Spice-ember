@@ -38,7 +38,7 @@ Go to **Supabase Dashboard → Settings → Edge Functions → Secrets** and add
 | `RAZORPAY_KEY_SECRET` | Razorpay Dashboard → Settings → API Keys → Key Secret |
 | `RAZORPAY_WEBHOOK_SECRET` | Razorpay Dashboard → Settings → Webhooks → Secret (after creating webhook in Step 5) |
 | `SUPABASE_URL` | `https://rbwrvrwuxndzcstzurdk.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Dashboard → Settings → API → `service_role` key |
+| `SUPABASE_SECRET_KEY` | Supabase Dashboard → Settings → API → `secret` key |
 
 > ⚠️ **IMPORTANT**: These secrets are stored ONLY in Supabase's secure vault. They are NEVER stored in any file pushed to GitHub.
 
@@ -155,7 +155,7 @@ Expected: `{"status":"error","message":"Invalid webhook signature"}` (200 — al
 | `RAZORPAY_WEBHOOK_SECRET` | ❌ NO | Supabase Edge Function secrets only |
 | `SUPABASE_URL` | ✅ Yes | `js/config.js` |
 | `SUPABASE_ANON_KEY` (sb_publishable_xxx) | ✅ Yes | `js/config.js` |
-| `SUPABASE_SERVICE_ROLE_KEY` | ❌ NO | Supabase Edge Function secrets only |
+| `SUPABASE_SECRET_KEY` | ❌ NO | Supabase Edge Function secrets only |
 
 ### `.gitignore` Entries
 
@@ -184,7 +184,7 @@ The following are gitignored and will never be pushed:
 git log --all --full-history -p -- js/config.js | grep -E "secret|key|password"
 
 # Or search all files ever committed
-git rev-list --all | xargs git grep -E "sk_live|rzp_live.*secret|service_role" || echo "No secrets found"
+git rev-list --all | xargs git grep -E "sk_live|rzp_live.*secret|SUPABASE_SECRET" || echo "No secrets found"
 ```
 
 ### How to Remove Secrets from Git History (if found)
@@ -233,7 +233,7 @@ git push origin --force --all
 | `RAZORPAY_KEY_SECRET` | `create-order`, `verify-payment` | Authenticate + verify signatures |
 | `RAZORPAY_WEBHOOK_SECRET` | `razorpay-webhook` | Verify incoming webhook authenticity |
 | `SUPABASE_URL` | `verify-payment`, `razorpay-webhook` | Connect to Supabase DB |
-| `SUPABASE_SERVICE_ROLE_KEY` | `verify-payment`, `razorpay-webhook` | Insert into DB (bypasses RLS) |
+| `SUPABASE_SECRET_KEY` | `verify-payment`, `razorpay-webhook` | Insert into DB (bypasses RLS) |
 
 ### Frontend Config (in `js/config.js` — safe to commit)
 
@@ -248,7 +248,7 @@ git push origin --force --all
 
 ## ⚠️ Final Reminders
 
-1. **NEVER** put `RAZORPAY_KEY_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`, `RAZORPAY_WEBHOOK_SECRET`, or `SUPABASE_JWT_SECRET` in any HTML, JS, or config file
+1. **NEVER** put `RAZORPAY_KEY_SECRET`, `SUPABASE_SECRET_KEY`, `RAZORPAY_WEBHOOK_SECRET`, or `SUPABASE_JWT_SECRET` in any HTML, JS, or config file
 2. Always use **test keys** (`rzp_test_`) during development and switch to **live keys** (`rzp_live_`) only in production
 3. The `.env.example` file IS safe to push — it only contains placeholder values
 4. The `.env.local` file is gitignored — use it for local reference only
