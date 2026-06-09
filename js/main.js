@@ -239,11 +239,10 @@ const App = {
     const form = document.querySelector('.booking-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
       const booking = {
-        id: Utils.generateId(),
         name: formData.get('name'),
         email: formData.get('email'),
         phone: formData.get('phone'),
@@ -251,17 +250,16 @@ const App = {
         time: formData.get('time'),
         guests: parseInt(formData.get('guests')),
         occasion: formData.get('occasion') || 'none',
-        requests: formData.get('requests') || '',
-        status: 'pending',
-        createdAt: new Date().toISOString()
+        requests: formData.get('requests') || ''
       };
 
-      const bookings = Utils.getBookings();
-      bookings.push(booking);
-      Utils.saveBookings(bookings);
-
-      Utils.showToast('Booking request submitted! We\'ll confirm shortly.', 'success');
-      form.reset();
+      try {
+        await API.createBooking(booking);
+        Utils.showToast('Booking request submitted! We\'ll confirm shortly.', 'success');
+        form.reset();
+      } catch (err) {
+        Utils.showToast('Failed to submit booking. Please try again.', 'error');
+      }
     });
   },
 
@@ -270,10 +268,21 @@ const App = {
     const form = document.querySelector('.contact-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      Utils.showToast('Message sent! We\'ll get back to you soon.', 'success');
-      form.reset();
+      const formData = new FormData(form);
+      try {
+        await API.createContactMessage({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          subject: formData.get('subject') || '',
+          message: formData.get('message')
+        });
+        Utils.showToast('Message sent! We\'ll get back to you soon.', 'success');
+        form.reset();
+      } catch (err) {
+        Utils.showToast('Failed to send message. Please try again.', 'error');
+      }
     });
   },
 
@@ -282,23 +291,20 @@ const App = {
     const form = document.querySelector('.review-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
-      const review = {
-        id: Utils.generateId(),
-        name: formData.get('name') || 'Anonymous',
-        rating: parseInt(formData.get('rating')) || 5,
-        comment: formData.get('comment'),
-        createdAt: new Date().toISOString()
-      };
-
-      const reviews = Utils.getReviews();
-      reviews.push(review);
-      Utils.saveReviews(reviews);
-
-      Utils.showToast('Thank you for your review!', 'success');
-      form.reset();
+      try {
+        await API.createReview({
+          name: formData.get('name') || 'Anonymous',
+          rating: parseInt(formData.get('rating')) || 5,
+          comment: formData.get('comment')
+        });
+        Utils.showToast('Thank you for your review!', 'success');
+        form.reset();
+      } catch (err) {
+        Utils.showToast('Failed to submit review. Please try again.', 'error');
+      }
     });
   },
 
@@ -369,10 +375,17 @@ const App = {
     const form = document.querySelector('.newsletter-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      Utils.showToast('Subscribed! Welcome to the Spice & Ember family.', 'success');
-      form.reset();
+      const email = form.querySelector('input[type="email"]')?.value;
+      if (!email) return;
+      try {
+        await API.subscribeNewsletter(email);
+        Utils.showToast('Subscribed! Welcome to the Spice & Ember family.', 'success');
+        form.reset();
+      } catch (err) {
+        Utils.showToast('Already subscribed or error occurred.', 'info');
+      }
     });
   },
 

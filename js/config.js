@@ -14,17 +14,18 @@ const CONFIG = {
     'Sun': '12:00 PM - 9:00 PM'
   },
   social: {
-    instagram: '#',
+    instagram: 'https://instagram.com',
     facebook: '#',
     twitter: '#'
   },
-  currency: '$',
+  currency: '₹',
   taxRate: 0.08,
   deliveryFee: 3.99,
   freeDeliveryMin: 30,
   supabaseUrl: 'https://rbwrvrwuxndzcstzurdk.supabase.co',
   supabaseAnonKey: 'sb_publishable_g5FYsXUwt1GTzSIq2_ZnZw_DgAEbkKt',
-  razorpayKey: 'rzp_live_placeholder',
+  razorpayKeyId: 'rzp_live_YOUR_RAZORPAY_KEY_ID',
+  supabaseFunctionUrl: 'https://rbwrvrwuxndzcstzurdk.supabase.co/functions/v1',
   storageKey: 'spice-ember-cart',
   bookingsKey: 'spice-ember-bookings',
   ordersKey: 'spice-ember-orders',

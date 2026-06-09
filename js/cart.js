@@ -211,20 +211,37 @@ const Cart = {
     const checkoutBtn = container.querySelector('.checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', () => {
-        Utils.showToast('Order placed successfully!', 'success');
-        const orders = Utils.getOrders();
-        orders.push({
-          id: Utils.generateId(),
-          items: cart,
-          subtotal,
-          tax,
-          delivery,
-          total,
-          status: 'pending',
-          createdAt: new Date().toISOString()
-        });
-        Utils.saveOrders(orders);
-        this.clear();
+        // Show checkout form
+        const checkoutSection = document.getElementById('checkoutSection');
+        const confirmationSection = document.getElementById('confirmationSection');
+        if (checkoutSection) {
+          checkoutSection.style.display = 'block';
+          checkoutSection.scrollIntoView({ behavior: 'smooth' });
+
+          // Pre-fill user info if logged in
+          if (Auth && Auth.isLoggedIn) {
+            const nameInput = document.getElementById('checkoutName');
+            const emailInput = document.getElementById('checkoutEmail');
+            if (nameInput) nameInput.value = Auth.userName || '';
+            if (emailInput) emailInput.value = Auth.userEmail || '';
+          }
+
+          // Show summary preview
+          const preview = document.getElementById('checkoutSummaryPreview');
+          if (preview) {
+            preview.innerHTML = `
+              <div class="checkout-preview-inner">
+                <h4>Order Summary</h4>
+                <div class="summary-row"><span>Items</span><span>${cart.length} item(s)</span></div>
+                <div class="summary-row"><span>Subtotal</span><span>${Utils.formatPrice(subtotal)}</span></div>
+                <div class="summary-row"><span>Tax</span><span>${Utils.formatPrice(tax)}</span></div>
+                <div class="summary-row"><span>Delivery</span><span>${delivery === 0 ? 'FREE' : Utils.formatPrice(delivery)}</span></div>
+                <div class="summary-divider"></div>
+                <div class="summary-row summary-total"><span>Total</span><span>${Utils.formatPrice(total)}</span></div>
+              </div>
+            `;
+          }
+        }
       });
     }
 
@@ -264,7 +281,104 @@ const Cart = {
   }
 };
 
+/* ===== CHECKOUT FORM HANDLER ===== */
 document.addEventListener('DOMContentLoaded', () => {
   Cart.renderCart();
   Cart.renderCartSummary();
+
+  const checkoutForm = document.getElementById('checkoutForm');
+  if (checkoutForm) {
+    checkoutForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payBtn = document.getElementById('payBtn');
+      if (!payBtn) return;
+
+      const cart = Cart.get();
+      if (cart.length === 0) {
+        Utils.showToast('Your cart is empty', 'error');
+        return;
+      }
+
+      const formData = new FormData(checkoutForm);
+      const orderDetails = {
+        customer_name: formData.get('name'),
+        customer_email: formData.get('email'),
+        customer_phone: formData.get('phone'),
+        delivery_address: formData.get('address'),
+        notes: formData.get('notes') || '',
+        items: cart,
+        subtotal: Cart.getTotal(),
+        tax: Cart.getTax(),
+        delivery_fee: Cart.getDeliveryFee(),
+        total: Cart.getGrandTotal(),
+        orderId: 'order_' + Utils.generateId()
+      };
+
+      payBtn.disabled = true;
+      payBtn.textContent = 'Processing payment...';
+
+      try {
+        // Initiate Razorpay payment
+        const payment = await RazorpayPayment.initiatePayment(orderDetails);
+
+        // Save order to Supabase/localStorage
+        const orderData = {
+          items: orderDetails.items,
+          subtotal: orderDetails.subtotal,
+          tax: orderDetails.tax,
+          delivery_fee: orderDetails.delivery_fee,
+          total: orderDetails.total,
+          customer_name: orderDetails.customer_name,
+          customer_email: orderDetails.customer_email,
+          customer_phone: orderDetails.customer_phone,
+          delivery_address: orderDetails.delivery_address,
+          notes: orderDetails.notes,
+          payment_id: payment.payment_id,
+          payment_method: 'razorpay',
+          status: payment.status === 'completed' ? 'pending' : 'pending'
+        };
+
+        await API.createOrder(orderData);
+
+        // Show confirmation
+        const checkoutSection = document.getElementById('checkoutSection');
+        const confirmationSection = document.getElementById('confirmationSection');
+        if (checkoutSection) checkoutSection.style.display = 'none';
+        if (confirmationSection) {
+          confirmationSection.style.display = 'block';
+          const details = document.getElementById('confirmationDetails');
+          if (details) {
+            details.innerHTML = `
+              <div class="confirmation-row"><span>Order ID:</span><span>#${orderDetails.orderId.slice(-8)}</span></div>
+              <div class="confirmation-row"><span>Payment ID:</span><span>${payment.payment_id}</span></div>
+              <div class="confirmation-row"><span>Total Paid:</span><span>${Utils.formatPrice(orderDetails.total)}</span></div>
+              <div class="confirmation-row"><span>Delivery:</span><span>${orderDetails.delivery_address}</span></div>
+              <div class="confirmation-row"><span>Status:</span><span class="status-badge pending">Pending</span></div>
+            `;
+          }
+          confirmationSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        Cart.clear();
+        Utils.showToast('Order placed successfully! 🎉', 'success');
+      } catch (err) {
+        if (err.message !== 'Payment cancelled by user') {
+          Utils.showToast(err.message || 'Payment failed. Please try again.', 'error');
+        }
+      } finally {
+        payBtn.disabled = false;
+        payBtn.textContent = '💳 Pay with Razorpay';
+      }
+    });
+  }
+
+  // Back to cart button
+  const backBtn = document.getElementById('backToCartBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      const checkoutSection = document.getElementById('checkoutSection');
+      if (checkoutSection) checkoutSection.style.display = 'none';
+      document.querySelector('.cart-layout')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 });

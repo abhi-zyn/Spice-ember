@@ -20,47 +20,43 @@ const Admin = {
   },
 
   /* ===== DASHBOARD ===== */
-  initDashboard() {
+  async initDashboard() {
     if (!document.getElementById('dashboardCards')) return;
 
-    const orders = Utils.getOrders();
-    const bookings = Utils.getBookings();
+    try {
+      const stats = await API.getDashboardStats();
 
-    const today = new Date().toDateString();
-    const todayOrders = orders.filter(o => new Date(o.createdAt).toDateString() === today);
-    const todayBookings = bookings.filter(b => new Date(b.createdAt).toDateString() === today);
-    const activeBookings = bookings.filter(b => b.status === 'pending' || b.status === 'confirmed');
+      document.getElementById('totalRevenue').textContent = Utils.formatPrice(stats.revenue);
+      document.getElementById('totalOrders').textContent = stats.ordersCount;
+      document.getElementById('activeBookings').textContent = stats.activeBookings;
+      document.getElementById('totalGuests').textContent = stats.totalGuests;
 
-    const revenue = todayOrders.reduce((sum, o) => sum + (o.total || 0), 0);
-    const totalGuests = todayBookings.reduce((sum, b) => sum + (b.guests || 0), 0);
-
-    document.getElementById('totalRevenue').textContent = Utils.formatPrice(revenue);
-    document.getElementById('totalOrders').textContent = todayOrders.length;
-    document.getElementById('activeBookings').textContent = activeBookings.length;
-    document.getElementById('totalGuests').textContent = totalGuests;
-
-    this.renderRecentOrders(orders);
+      this.renderRecentOrders(stats.recentOrders);
+    } catch (e) {
+      console.error('Dashboard error:', e);
+    }
   },
 
   renderRecentOrders(orders) {
     const tbody = document.getElementById('recentOrdersTable');
     if (!tbody) return;
 
-    const recent = orders.slice(-5).reverse();
-    if (recent.length === 0) {
+    if (!orders || orders.length === 0) {
       tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:32px">No orders yet</td></tr>';
       return;
     }
 
-    tbody.innerHTML = recent.map(o => `
+    tbody.innerHTML = orders.map(o => {
+      const id = o.id ? '#' + o.id.toString().slice(-8) : '#N/A';
+      return `
       <tr>
-        <td style="font-family:monospace;font-size:12px">#${o.id.slice(-8)}</td>
-        <td>${o.items ? o.items.length + ' items' : 'N/A'}</td>
-        <td>${Utils.formatPrice(o.total || 0)}</td>
-        <td><span class="status-badge ${o.status}">${o.status}</span></td>
-        <td>${Utils.formatDate(o.createdAt)}</td>
+        <td style="font-family:monospace;font-size:12px">${id}</td>
+        <td>${o.items ? (Array.isArray(o.items) ? o.items.length + ' items' : '1 item') : 'N/A'}</td>
+        <td>${Utils.formatPrice(parseFloat(o.total) || 0)}</td>
+        <td><span class="status-badge ${o.status || 'pending'}">${o.status || 'pending'}</span></td>
+        <td>${o.created_at ? Utils.formatDate(o.created_at) : (o.createdAt ? Utils.formatDate(o.createdAt) : '—')}</td>
       </tr>
-    `).join('');
+    `}).join('');
   },
 
   /* ===== BOOKINGS ===== */
@@ -76,21 +72,19 @@ const Admin = {
     }
   },
 
-  renderBookings(statusFilter = 'all') {
+  async renderBookings(statusFilter = 'all') {
     const tbody = document.getElementById('bookingsTable');
     if (!tbody) return;
 
-    let bookings = Utils.getBookings();
-    if (statusFilter !== 'all') {
-      bookings = bookings.filter(b => b.status === statusFilter);
-    }
+    try {
+      const bookings = await API.getBookings(statusFilter);
 
-    if (bookings.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">No bookings found</td></tr>';
-      return;
-    }
+      if (!bookings || bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">No bookings found</td></tr>';
+        return;
+      }
 
-    tbody.innerHTML = bookings.reverse().map(b => `
+      tbody.innerHTML = bookings.map(b => `
       <tr>
         <td>
           <div style="font-weight:600">${b.name}</div>
@@ -111,22 +105,26 @@ const Admin = {
       </tr>
     `).join('');
 
-    tbody.querySelectorAll('.booking-action').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.updateBookingStatus(btn.dataset.id, btn.dataset.action);
+      tbody.querySelectorAll('.booking-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.updateBookingStatus(btn.dataset.id, btn.dataset.action);
+        });
       });
-    });
+    } catch (e) {
+      console.error('Render bookings error:', e);
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Error loading bookings</td></tr>';
+    }
   },
 
-  updateBookingStatus(id, status) {
-    const bookings = Utils.getBookings();
-    const booking = bookings.find(b => b.id === id);
-    if (!booking) return;
-
-    booking.status = status;
-    Utils.saveBookings(bookings);
-    Utils.showToast(`Booking ${status}`, 'success');
-    this.renderBookings(document.getElementById('bookingFilter')?.value || 'all');
+  async updateBookingStatus(id, status) {
+    try {
+      await API.updateBookingStatus(id, status);
+      Utils.showToast(`Booking ${status}`, 'success');
+      const filter = document.getElementById('bookingFilter');
+      this.renderBookings(filter?.value || 'all');
+    } catch (e) {
+      Utils.showToast('Failed to update booking', 'error');
+    }
   },
 
   /* ===== ORDERS ===== */
@@ -142,56 +140,62 @@ const Admin = {
     }
   },
 
-  renderOrders(statusFilter = 'all') {
+  async renderOrders(statusFilter = 'all') {
     const tbody = document.getElementById('ordersTable');
     if (!tbody) return;
 
-    let orders = Utils.getOrders();
-    if (statusFilter !== 'all') {
-      orders = orders.filter(o => o.status === statusFilter);
-    }
+    try {
+      const orders = await API.getOrders(statusFilter);
 
-    if (orders.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">No orders found</td></tr>';
-      return;
-    }
+      if (!orders || orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">No orders found</td></tr>';
+        return;
+      }
 
-    tbody.innerHTML = orders.reverse().map(o => `
-      <tr>
-        <td style="font-family:monospace;font-size:12px">#${o.id.slice(-8)}</td>
-        <td>
-          ${o.items ? o.items.map(i => `<div style="font-size:13px">${i.quantity}× ${i.name}</div>`).join('') : 'N/A'}
-        </td>
-        <td>${Utils.formatPrice(o.total || 0)}</td>
-        <td><span class="status-badge ${o.status}">${o.status}</span></td>
-        <td>${Utils.formatDate(o.createdAt)} ${Utils.formatTime(o.createdAt)}</td>
-        <td>
-          <div class="admin-actions">
-            <button class="admin-btn admin-btn-primary order-action" data-id="${o.id}" data-action="preparing">Prepare</button>
-            <button class="admin-btn order-action" data-id="${o.id}" data-action="ready">Ready</button>
-            <button class="admin-btn order-action" data-id="${o.id}" data-action="delivered">Deliver</button>
-            <button class="admin-btn admin-btn-danger order-action" data-id="${o.id}" data-action="cancelled">Cancel</button>
-          </div>
-        </td>
-      </tr>
-    `).join('');
+      tbody.innerHTML = orders.map(o => {
+        const id = o.id ? '#' + o.id.toString().slice(-8) : '#N/A';
+        const itemsHtml = o.items ? (Array.isArray(o.items)
+          ? o.items.map(i => `<div style="font-size:13px">${i.quantity}× ${i.name}</div>`).join('')
+          : '<div style="font-size:13px">Items</div>') : 'N/A';
+        const createdDate = o.created_at || o.createdAt || null;
+        return `
+        <tr>
+          <td style="font-family:monospace;font-size:12px">${id}</td>
+          <td>${itemsHtml}</td>
+          <td>${Utils.formatPrice(parseFloat(o.total) || 0)}</td>
+          <td><span class="status-badge ${o.status}">${o.status}</span></td>
+          <td>${createdDate ? Utils.formatDate(createdDate) + ' ' + Utils.formatTime(createdDate) : '—'}</td>
+          <td>
+            <div class="admin-actions">
+              <button class="admin-btn admin-btn-primary order-action" data-id="${o.id}" data-action="preparing">Prepare</button>
+              <button class="admin-btn order-action" data-id="${o.id}" data-action="ready">Ready</button>
+              <button class="admin-btn order-action" data-id="${o.id}" data-action="delivered">Deliver</button>
+              <button class="admin-btn admin-btn-danger order-action" data-id="${o.id}" data-action="cancelled">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      `}).join('');
 
-    tbody.querySelectorAll('.order-action').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.updateOrderStatus(btn.dataset.id, btn.dataset.action);
+      tbody.querySelectorAll('.order-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.updateOrderStatus(btn.dataset.id, btn.dataset.action);
+        });
       });
-    });
+    } catch (e) {
+      console.error('Render orders error:', e);
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">Error loading orders</td></tr>';
+    }
   },
 
-  updateOrderStatus(id, status) {
-    const orders = Utils.getOrders();
-    const order = orders.find(o => o.id === id);
-    if (!order) return;
-
-    order.status = status;
-    Utils.saveOrders(orders);
-    Utils.showToast(`Order ${status}`, 'success');
-    this.renderOrders(document.getElementById('orderFilter')?.value || 'all');
+  async updateOrderStatus(id, status) {
+    try {
+      await API.updateOrderStatus(id, status);
+      Utils.showToast(`Order ${status}`, 'success');
+      const filter = document.getElementById('orderFilter');
+      this.renderOrders(filter?.value || 'all');
+    } catch (e) {
+      Utils.showToast('Failed to update order', 'error');
+    }
   },
 
   /* ===== MENU MANAGEMENT ===== */
