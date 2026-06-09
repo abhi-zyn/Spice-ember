@@ -1,78 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Page Not Found | Spice & Ember</title>
-  <meta name="description" content="Page not found.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 | S&amp;E</title>
+<meta name="description" content="Page not found.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-left">
-        <button class="nav-menu-btn" aria-label="Menu">☰</button>
-        <a href="index.html" class="navbar-brand">Spice <span>&amp;</span> Ember</a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="book-table.html">Reservations</a>
-        <a href="about.html">About</a>
-      </div>
-      <div class="navbar-right">
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <span class="sun-icon">☀️</span>
-          <span class="moon-icon" style="display:none">🌙</span>
-        </button>
-        <button class="auth-login-btn nav-icon-btn" aria-label="Sign in" title="Sign in">👤</button>
-        <div class="auth-user-menu" style="display:none">
-          <span class="auth-avatar"></span>
-          <span class="auth-user-name"></span>
-          <button class="auth-logout-btn" title="Sign out">🚪</button>
-        </div>
-        <a href="order.html" class="nav-cart-btn" aria-label="Cart">
-          🛒
-          <span class="cart-badge" style="display:none">0</span>
-        </a>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar">
+<div class="navbar-container">
+<div class="navbar-left">
+<button class="nav-menu-btn" aria-label="Menu">
+<div class="hamburger-bars"><span></span><span></span><span></span></div>
+</button>
+<a href="index.html" class="navbar-brand">Spice <span>&amp;</span> Ember</a>
+</div>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="menu.html">Menu</a>
+<a href="book-table.html">Reservations</a>
+<a href="about.html">About</a>
+</div>
+<div class="navbar-right">
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-track"></div>
+<div class="theme-toggle-thumb">
+<svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+<svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+</button>
+<button class="auth-login-btn nav-icon-btn" aria-label="Sign in" title="Sign in">
+<svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
+</button>
+<div class="auth-user-menu" style="display:none">
+<span class="auth-avatar"></span>
+<span class="auth-user-name"></span>
+<button class="auth-logout-btn" title="Sign out">
+<svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+</button>
+</div>
+<a href="order.html" class="nav-cart-btn" aria-label="Cart">
+<svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+<span class="cart-badge" style="display:none">0</span>
+</a>
+</div>
+</div>
+</nav>
 
-  <div class="mobile-menu-overlay"></div>
-  <div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="book-table.html">Reservations</a>
-    <a href="order.html">Order Online</a>
-    <a href="about.html">About Us</a>
-  </div>
+<div class="mobile-menu-overlay"></div>
+<div class="mobile-menu">
+<div class="mobile-menu-header">
+<button class="mobile-menu-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/></svg>
+</button>
+</div>
+<a href="index.html">Home</a>
+<a href="menu.html">Menu</a>
+<a href="book-table.html">Reservations</a>
+<a href="order.html">Order Online</a>
+<a href="about.html">About Us</a>
+<div class="mobile-menu-divider"></div>
+<a href="javascript:void(0)" class="auth-login-btn-mobile">Sign In</a>
+</div>
 
-  <section class="error-section">
-    <div class="container">
-      <div class="error-content">
-        <div class="error-code">404</div>
-        <h1>Page Not Found</h1>
-        <p>Looks like this dish isn't on our menu. Let's get you back to the fire.</p>
-        <div class="error-actions">
-          <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
-          <a href="menu.html" class="btn btn-outline btn-lg">View Our Menu</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="error-section">
+<div class="container">
+<div class="error-content">
+<div class="error-code">404</div>
+<h1>Page Not Found</h1>
+<p>Looks like this dish isn't on our menu. Let's get you back to the fire.</p>
+<div class="error-actions">
+<a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+<a href="menu.html" class="btn btn-outline btn-lg">View Our Menu</a>
+</div>
+</div>
+</div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/menu-data.js"></script>
-  <script src="js/supabase.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/razorpay.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/razorpay.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

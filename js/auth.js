@@ -71,8 +71,8 @@ const Auth = {
     overlay.id = 'authOverlay';
     overlay.className = 'auth-overlay';
     overlay.innerHTML = '<div class="auth-modal" role="dialog" aria-modal="true" aria-label="Authentication">'
-      + '<button class="auth-close" id="authClose" aria-label="Close">✕</button>'
-      + '<div class="auth-brand"><span class="auth-brand-icon">🔥</span>'
+      + '<button class="auth-close" id="authClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/></svg></button>'
+      + '<div class="auth-brand"><span class="auth-brand-icon">S&amp;E</span>'
       + '<h2>Spice <span>&amp;</span> Ember</h2>'
       + '<p>Sign in to order, book, and save favorites</p></div>'
       + '<div class="auth-tab-wrapper">'
@@ -121,7 +121,7 @@ const Auth = {
       + '<p class="auth-footer-text">Already have an account? <button type="button" id="gotoLogin">Sign in</button></p></div>'
       /* MAGIC LINK SENT */
       + '<div class="auth-magic-sent" id="magicSent">'
-      + '<span class="auth-magic-icon">✉️</span>'
+      + '<span class="auth-magic-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>'
       + '<h3>Check your inbox</h3>'
       + '<p>We sent a magic link to <strong id="magicEmailDisplay"></strong>. Click it to sign in instantly.</p>'
       + '<button class="auth-back-btn" id="magicBackBtn">← Back to sign in</button></div>'
@@ -196,7 +196,7 @@ const Auth = {
         var data = await SupabaseService.signIn(email, password);
         self.currentUser = data.user;
         localStorage.setItem('spice-ember-user', JSON.stringify(data.user));
-        Utils.showToast('Welcome back! 🔥', 'success');
+        Utils.showToast('Welcome back!', 'success');
         self.closeModal();
         self.updateUI();
         return data;
@@ -211,7 +211,7 @@ const Auth = {
     var user = { id: 'user_' + Utils.generateId(), email: email, user_metadata: { name: found.name } };
     self.currentUser = user;
     localStorage.setItem('spice-ember-user', JSON.stringify(user));
-    Utils.showToast('Welcome back! 🔥', 'success');
+    Utils.showToast('Welcome back!', 'success');
     self.closeModal();
     self.updateUI();
     return user;
@@ -244,7 +244,7 @@ const Auth = {
     localStorage.setItem('spice-ember-users', JSON.stringify(users));
     self.currentUser = user;
     localStorage.setItem('spice-ember-user', JSON.stringify(user));
-    Utils.showToast('Account created! 🔥', 'success');
+    Utils.showToast('Account created!', 'success');
     self.closeModal();
     self.updateUI();
     return user;

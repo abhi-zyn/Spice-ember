@@ -111,7 +111,7 @@ const App = {
     if (menuItems.length === 0) {
       container.innerHTML = `
         <div class="no-results">
-          <div class="no-results-icon">🔍</div>
+          <div class="no-results-icon"><svg viewBox="0 0 24 24" width="48" height="48"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
           <h3>No items found</h3>
           <p>Try adjusting your search or filters.</p>
           <button class="btn btn-primary" onclick="App.resetFilters()">Reset Filters</button>
@@ -124,7 +124,7 @@ const App = {
       <div class="menu-card" data-id="${item.id}" onclick="App.openItemModal('${item.id}')">
         <div class="menu-card-image">
           <img src="${item.image}" alt="${item.name}" loading="lazy">
-          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? '🟢 Veg' : '🔴 Non-Veg'}</span>
+          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? 'Veg' : 'Non-Veg'}</span>
         </div>
         <div class="menu-card-content">
           <h3 class="menu-card-name">${item.name}</h3>
@@ -151,7 +151,7 @@ const App = {
       <div class="menu-card" data-id="${item.id}" onclick="window.location.href='menu.html#${item.id}'">
         <div class="menu-card-image">
           <img src="${item.image}" alt="${item.name}" loading="lazy">
-          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? '🟢 Veg' : '🔴 Non-Veg'}</span>
+          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? 'Veg' : 'Non-Veg'}</span>
         </div>
         <div class="menu-card-content">
           <h3 class="menu-card-name">${item.name}</h3>
@@ -173,17 +173,16 @@ const App = {
     if (!container) return;
 
     const categories = [
-      { id: 'all', label: 'All', icon: '🍽️' },
-      { id: 'starters', label: 'Starters', icon: '🥗' },
-      { id: 'mains', label: 'Mains', icon: '🥩' },
-      { id: 'sides', label: 'Sides', icon: '🍟' },
-      { id: 'desserts', label: 'Desserts', icon: '🍰' },
-      { id: 'beverages', label: 'Beverages', icon: '🍹' }
+      { id: 'all', label: 'All' },
+      { id: 'starters', label: 'Starters' },
+      { id: 'mains', label: 'Mains' },
+      { id: 'sides', label: 'Sides' },
+      { id: 'desserts', label: 'Desserts' },
+      { id: 'beverages', label: 'Beverages' }
     ];
 
     container.innerHTML = categories.map(cat => `
       <button class="category-pill ${cat.id === this.currentCategory ? 'active' : ''}" data-category="${cat.id}">
-        <span class="pill-icon">${cat.icon}</span>
         ${cat.label}
       </button>
     `).join('');
@@ -247,12 +246,12 @@ const App = {
     modal.className = 'modal-overlay';
     modal.innerHTML = `
       <div class="modal-content">
-        <button class="modal-close">✕</button>
+        <button class="modal-close"><svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/></svg></button>
         <div class="modal-image">
           <img src="${item.image}" alt="${item.name}">
         </div>
         <div class="modal-body">
-          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? '🟢 Veg' : '🔴 Non-Veg'}</span>
+          <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? 'Veg' : 'Non-Veg'}</span>
           <h2 class="modal-title">${item.name}</h2>
           <p class="modal-desc">${item.description}</p>
           <div class="modal-rating">

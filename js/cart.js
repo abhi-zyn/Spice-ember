@@ -108,7 +108,7 @@ const Cart = {
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="cart-empty">
-          <div class="cart-empty-icon">🛒</div>
+          <div class="cart-empty-icon"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
           <h3>Your cart is empty</h3>
           <p>Looks like you haven't added anything yet.</p>
           <a href="menu.html" class="btn btn-primary">Browse Menu</a>
@@ -121,7 +121,7 @@ const Cart = {
       <div class="cart-item" data-id="${item.id}">
         <div class="cart-item-image">
           <img src="${item.image}" alt="${item.name}" loading="lazy">
-          <span class="cart-item-type ${item.type}">${item.type === 'veg' ? '🟢' : '🔴'}</span>
+          <span class="cart-item-type ${item.type}">${item.type === 'veg' ? 'V' : 'NV'}</span>
         </div>
         <div class="cart-item-details">
           <h4 class="cart-item-name">${item.name}</h4>
@@ -134,7 +134,7 @@ const Cart = {
             <button class="qty-btn qty-plus" data-id="${item.id}">+</button>
           </div>
           <div class="cart-item-total">${Utils.formatPrice(item.price * item.quantity)}</div>
-          <button class="cart-item-remove" data-id="${item.id}" title="Remove">✕</button>
+          <button class="cart-item-remove" data-id="${item.id}" title="Remove"><svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/></svg></button>
         </div>
       </div>
     `).join('');
@@ -360,14 +360,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         Cart.clear();
-        Utils.showToast('Order placed successfully! 🎉', 'success');
+        Utils.showToast('Order placed successfully!', 'success');
       } catch (err) {
         if (err.message !== 'Payment cancelled by user') {
           Utils.showToast(err.message || 'Payment failed. Please try again.', 'error');
         }
       } finally {
         payBtn.disabled = false;
-        payBtn.textContent = '💳 Pay with Razorpay';
+        payBtn.textContent = 'Pay with Razorpay';
       }
     });
   }
