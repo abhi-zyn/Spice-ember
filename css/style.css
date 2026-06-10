@@ -480,3 +480,491 @@ body.light-mode .menu-card-name { color: var(--cream); }
   .team-grid { grid-template-columns: 1fr; }
   .error-code { font-size: 80px; }
 }
+
+/* ============================================
+   SPICE & EMBER - MOBILE-FIRST REDESIGN
+   ============================================ */
+
+/* Mobile-first body reset for new layout */
+body.mobile-redesign {
+  margin: 0;
+  overflow-x: hidden;
+  background: #0D0C0A;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== TOP NAVBAR (mobile) ===== */
+#top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  gap: 12px;
+  background: transparent;
+  transition: background 0.3s;
+}
+#top-navbar.scrolled {
+  background: rgba(13,12,10,0.92);
+  backdrop-filter: blur(8px);
+}
+#top-navbar .search-bar {
+  flex: 1;
+  max-width: 60%;
+  height: 40px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  padding: 0 16px;
+  font-size: 14px;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+#top-navbar .search-bar::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+#top-navbar svg {
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ===== HERO SECTION (mobile) ===== */
+#hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+#hero .hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+  z-index: 1;
+}
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px 60px;
+  width: 100%;
+}
+#hero .hero-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #C9A84C;
+  margin-bottom: 12px;
+}
+#hero .hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+#hero .hero-title em {
+  font-style: italic;
+  color: #C9A84C;
+}
+#hero .hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+  margin: 0 0 24px;
+  max-width: 280px;
+}
+#hero .hero-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+#hero .hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+#hero .hero-dot.active {
+  width: 20px;
+  border-radius: 4px;
+  background: #C9A84C;
+}
+#hero .hero-menu-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+
+/* ===== BOTTOM SHEET ===== */
+#bottom-sheet {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  margin-top: -80px;
+  padding: 12px 20px 120px;
+  z-index: 10;
+}
+#bottom-sheet .sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: #ddd;
+  margin: 0 auto 16px;
+}
+
+/* Search row inside sheet */
+#bottom-sheet .sheet-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+#bottom-sheet .sheet-search-row .search-input-wrap {
+  flex: 1;
+  position: relative;
+}
+#bottom-sheet .sheet-search-row .search-input-wrap svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+#bottom-sheet .sheet-search-row .search-input-wrap input {
+  width: 100%;
+  height: 44px;
+  border-radius: 22px;
+  border: none;
+  background: #F3F3F3;
+  padding: 0 16px 0 42px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  color: #333;
+}
+#bottom-sheet .sheet-search-row .search-input-wrap input::placeholder {
+  color: #aaa;
+}
+#bottom-sheet .sheet-search-row .heart-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #E0E0E0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #888;
+  transition: all 0.2s;
+}
+#bottom-sheet .sheet-search-row .heart-btn:hover {
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+
+/* Category tabs */
+#bottom-sheet .category-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#bottom-sheet .category-tabs::-webkit-scrollbar {
+  display: none;
+}
+#bottom-sheet .category-tabs .tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #E0E0E0;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+#bottom-sheet .category-tabs .tab.active {
+  background: #1A1A1A;
+  color: #fff;
+  border-color: #1A1A1A;
+}
+
+/* Section header */
+#bottom-sheet .section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+#bottom-sheet .section-header-row h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #1A1A1A;
+  margin: 0;
+}
+#bottom-sheet .section-header-row .filter-tabs {
+  display: flex;
+  gap: 12px;
+}
+#bottom-sheet .section-header-row .filter-tabs span {
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  color: #888;
+  cursor: pointer;
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+#bottom-sheet .section-header-row .filter-tabs span.active {
+  color: #C9A84C;
+  border-bottom: 2px solid #C9A84C;
+  font-weight: 600;
+}
+
+/* Food cards (horizontal scroll) */
+#bottom-sheet .food-cards {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 4px 0 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#bottom-sheet .food-cards::-webkit-scrollbar {
+  display: none;
+}
+#bottom-sheet .food-card {
+  min-width: 155px;
+  background: #F5F5F5;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+#bottom-sheet .food-card .food-card-img {
+  height: 130px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+#bottom-sheet .food-card .food-card-menu-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+#bottom-sheet .food-card .food-card-body {
+  padding: 10px 12px 14px;
+}
+#bottom-sheet .food-card .food-card-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 2px;
+}
+#bottom-sheet .food-card .food-card-sub {
+  font-size: 11px;
+  color: #888;
+  margin: 0 0 6px;
+}
+#bottom-sheet .food-card .food-card-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* Book Table banner */
+#bottom-sheet .book-table-banner {
+  margin-top: 24px;
+  background: #1A1A1A;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#bottom-sheet .book-table-banner .banner-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+#bottom-sheet .book-table-banner .banner-text {
+  flex: 1;
+  min-width: 0;
+}
+#bottom-sheet .book-table-banner .banner-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #C9A84C;
+  margin: 0 0 2px;
+  text-transform: uppercase;
+}
+#bottom-sheet .book-table-banner .banner-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+}
+#bottom-sheet .book-table-banner .banner-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+#bottom-sheet .book-table-banner .banner-btn {
+  background: #C9A84C;
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+#bottom-sheet .book-table-banner .banner-btn:hover {
+  background: #dbb95c;
+}
+
+/* ===== BOTTOM NAV ===== */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid #F0F0F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+#bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: #AAA;
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.2s;
+  position: relative;
+}
+#bottom-nav .nav-item.active {
+  color: #1A1A1A;
+}
+#bottom-nav .nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+#bottom-nav .nav-item.center-btn {
+  margin-bottom: 12px;
+}
+#bottom-nav .nav-item .center-plus {
+  width: 52px;
+  height: 52px;
+  background: #1A1A1A;
+  border-radius: 50%;
+  color: #C9A84C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 2px;
+}
+
+/* ===== RESPONSIVE: Desktop ===== */
+@media (min-width: 769px) {
+  #bottom-nav {
+    display: none;
+  }
+  #bottom-sheet {
+    position: static;
+    margin-top: 0;
+    border-radius: 0;
+    background: transparent;
+    min-height: auto;
+    padding: 0;
+  }
+  #bottom-sheet .sheet-handle,
+  #bottom-sheet .sheet-search-row,
+  #bottom-sheet .category-tabs,
+  #bottom-sheet .section-header-row,
+  #bottom-sheet .food-cards,
+  #bottom-sheet .book-table-banner {
+    display: none;
+  }
+  #hero {
+    height: 90vh;
+  }
+  body.mobile-redesign #top-navbar {
+    display: none;
+  }
+  body.mobile-redesign .navbar {
+    display: flex;
+  }
+}
