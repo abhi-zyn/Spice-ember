@@ -135,7 +135,6 @@ const Auth = {
     var overlay = document.getElementById('authOverlay');
     if (!overlay) return;
     overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
     this.switchTab(tab);
     this.focusTrap(overlay);
   },
@@ -144,7 +143,6 @@ const Auth = {
     var overlay = document.getElementById('authOverlay');
     if (!overlay) return;
     overlay.classList.remove('active');
-    document.body.style.overflow = '';
     this.clearErrors();
   },
 

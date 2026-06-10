@@ -99,7 +99,7 @@ const App = {
 
   /* ===== MENU RENDERING ===== */
   renderMenuGrid(items) {
-    const container = document.querySelector('.menu-grid');
+    const container = document.querySelector('.menu-grid-dynamic');
     if (!container) return;
 
     const menuItems = items || MenuData.filter({
@@ -148,7 +148,7 @@ const App = {
 
     const featured = MenuData.getFeatured().slice(0, 4);
     container.innerHTML = featured.map(item => `
-      <div class="menu-card" data-id="${item.id}" onclick="window.location.href='menu.html#${item.id}'">
+      <div class="menu-card" data-id="${item.id}" onclick="window.location.href='index.html#full-menu'">
         <div class="menu-card-image">
           <img src="${item.image}" alt="${item.name}" loading="lazy">
           <span class="menu-card-badge ${item.type}">${item.type === 'veg' ? 'Veg' : 'Non-Veg'}</span>
@@ -272,7 +272,6 @@ const App = {
     `;
 
     document.body.appendChild(modal);
-    document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(() => modal.classList.add('active'));
 
@@ -291,18 +290,15 @@ const App = {
       Cart.add({ id: item.id, name: item.name, price: item.price, image: item.image, type: item.type, quantity: qty });
       modal.classList.remove('active');
       setTimeout(() => modal.remove(), 300);
-      document.body.style.overflow = '';
     });
     modal.querySelector('.modal-close').addEventListener('click', () => {
       modal.classList.remove('active');
       setTimeout(() => modal.remove(), 300);
-      document.body.style.overflow = '';
     });
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
         setTimeout(() => modal.remove(), 300);
-        document.body.style.overflow = '';
       }
     });
   },

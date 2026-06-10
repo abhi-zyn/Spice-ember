@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Spice & Ember</title>
+<title>Spice &amp; Ember</title>
 <meta name="description" content="Spice & Ember - Premium fire-crafted dining experience. Smoked meats, grilled specialties, and craft cocktails.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💾</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C9A84C' d='M12 2C9 7 6 9.5 6 14a6 6 0 0 0 12 0c0-4.5-3-7-6-12zm0 18a4 4 0 0 1-4-4c0-2.5 1.5-4.3 4-7.5 2.5 3.2 4 5 4 7.5a4 4 0 0 1-4 4z'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;italic&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,13 +13,487 @@
 </head>
 <body class="mobile-redesign">
 
-<!-- TL NOVBAR (mobile) -->
+<!-- TOP NAVBAR -->
 <header id="top-navbar">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
   </svg>
   <input class="search-bar" type="text" placeholder="Search dishes..." aria-label="Search dishes">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-  </svg>
+  <a href="profile.html" class="navbar-profile-link" aria-label="Profile">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </svg>
+  </a>
 </header>
+
+<!-- HERO SECTION -->
+<section id="hero">
+  <img class="hero-bg-img" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80" alt="Grilled steak with fire" loading="lazy">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">PREMIUM</div>
+    <h1 class="hero-title">Where Fire<br><em>Meets Flavor</em></h1>
+    <p class="hero-sub">Wood-fired. Spice-crusted. Ember-roasted. Experience dining reimagined through the primal power of flame.</p>
+    <div class="hero-dots">
+      <span class="hero-dot active"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM SHEET -->
+<div id="bottom-sheet">
+  <div class="sheet-handle"></div>
+
+  <!-- Search row -->
+  <div class="sheet-search-row">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" placeholder="Search dishes..." aria-label="Search dishes">
+    </div>
+    <button class="heart-btn" aria-label="Favorites">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Category tabs -->
+  <div class="category-tabs">
+    <span class="tab active">All</span>
+    <span class="tab">Starters</span>
+    <span class="tab">Mains</span>
+    <span class="tab">Grills</span>
+    <span class="tab">Desserts</span>
+    <span class="tab">Drinks</span>
+  </div>
+
+  <!-- Section header -->
+  <div class="section-header-row">
+    <h2>Popular</h2>
+    <div class="filter-tabs">
+      <span class="active">Popular</span>
+      <span>New</span>
+      <span>Top Rated</span>
+    </div>
+  </div>
+
+  <!-- Food cards (horizontal scroll) -->
+  <div class="food-cards">
+    <div class="food-card" onclick="openModal(&#x27;Charcoal-Grilled Ribeye&#x27;,&#x27;https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;14oz prime ribeye seared over mesquite charcoal, with roasted bone marrow butter.&#x27;,38.99,false,4.9,312,&#x27;mc-002&#x27;)">
+      <img class="food-card-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop" alt="Charcoal-Grilled Ribeye" loading="lazy">
+      <div class="food-card-body">
+        <p class="food-card-name">Charcoal-Grilled Ribeye</p>
+        <p class="food-card-sub">Mesquite charcoal sear</p>
+        <p class="food-card-price">₹38.99</p>
+      </div>
+    </div>
+    <div class="food-card" onclick="openModal(&#x27;Smoked Brisket&#x27;,&#x27;https://images.unsplash.com/photo-1544025162-d76694265947?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;12-hour oak-smoked brisket with house BBQ rub, served with pickled slaw and cornbread.&#x27;,28.99,false,4.9,234,&#x27;mc-001&#x27;)">
+      <img class="food-card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Smoked Brisket" loading="lazy">
+      <div class="food-card-body">
+        <p class="food-card-name">Smoked Brisket</p>
+        <p class="food-card-sub">12-hour oak smoke</p>
+        <p class="food-card-price">₹28.99</p>
+      </div>
+    </div>
+    <div class="food-card" onclick="openModal(&#x27;Lamb Kofta Kebab&#x27;,&#x27;https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Spiced ground lamb skewers grilled over charcoal, with tzatziki and warm flatbread.&#x27;,24.99,false,4.8,156,&#x27;mc-006&#x27;)">
+      <img class="food-card-img" src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop" alt="Lamb Kofta Kebab" loading="lazy">
+      <div class="food-card-body">
+        <p class="food-card-name">Lamb Kofta Kebab</p>
+        <p class="food-card-sub">Charcoal-grilled skewers</p>
+        <p class="food-card-price">₹24.99</p>
+      </div>
+    </div>
+    <div class="food-card" onclick="openModal(&#x27;Fire-Roasted Salmon&#x27;,&#x27;https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Atlantic salmon fillet roasted over cedar plank, with citrus-herb butter and asparagus.&#x27;,26.99,false,4.7,178,&#x27;mc-003&#x27;)">
+      <img class="food-card-img" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Fire-Roasted Salmon" loading="lazy">
+      <div class="food-card-body">
+        <p class="food-card-name">Fire-Roasted Salmon</p>
+        <p class="food-card-sub">Cedar plank roasted</p>
+        <p class="food-card-price">₹26.99</p>
+      </div>
+    </div>
+    <div class="food-card" onclick="openModal(&#x27;Fire-Roasted Shrimp&#x27;,&#x27;https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Jumbo shrimp charred over open flame, finished with chili-garlic butter and fresh lime.&#x27;,14.99,false,4.8,124,&#x27;st-001&#x27;)">
+      <img class="food-card-img" src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=400&h=300&fit=crop" alt="Fire-Roasted Shrimp" loading="lazy">
+      <div class="food-card-body">
+        <p class="food-card-name">Fire-Roasted Shrimp</p>
+        <p class="food-card-sub">Chili-garlic butter</p>
+        <p class="food-card-price">₹14.99</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Table banner -->
+  <div class="book-table-banner">
+    <img class="banner-avatar" src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=100&h=100&fit=crop" alt="Chef" loading="lazy">
+    <div class="banner-text">
+      <p class="banner-label">Reservation</p>
+      <p class="banner-title">Reserve a Table</p>
+      <p class="banner-sub">Available today &middot; Seats filling fast</p>
+    </div>
+    <a href="book-table.html" class="banner-btn">Book Now</a>
+  </div>
+
+  <!-- FULL MENU SECTION -->
+  <div class="full-menu-section" id="full-menu">
+    <h2 class="section-title">Our Full Menu</h2>
+
+    <h3 class="cat-title">Starters</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Fire-Roasted Shrimp&#x27;,&#x27;https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Jumbo shrimp charred over open flame, finished with chili-garlic butter and fresh lime.&#x27;,14.99,false,4.8,124,&#x27;st-001&#x27;)">
+        <img src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=400&h=300&fit=crop" alt="Fire-Roasted Shrimp" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Fire-Roasted Shrimp</p>
+          <p class="mg-price">₹14.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-001&#x27;,name:&#x27;Fire-Roasted Shrimp&#x27;,price:14.99,image:&#x27;https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Ember-Roasted Bone Marrow&#x27;,&#x27;https://images.unsplash.com/photo-1603073163308-9654c3fb70b5?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Beef bone marrow roasted with herbs, served with toasted sourdough and pickled shallots.&#x27;,18.99,false,4.9,89,&#x27;st-002&#x27;)">
+        <img src="https://images.unsplash.com/photo-1603073163308-9654c3fb70b5?w=400&h=300&fit=crop" alt="Ember-Roasted Bone Marrow" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Ember-Roasted Bone Marrow</p>
+          <p class="mg-price">₹18.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-002&#x27;,name:&#x27;Ember-Roasted Bone Marrow&#x27;,price:18.99,image:&#x27;https://images.unsplash.com/photo-1603073163308-9654c3fb70b5?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Charred Octopus&#x27;,&#x27;https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Tender octopus grilled over charcoal, with smoked paprika aioli and pickled fennel.&#x27;,16.99,false,4.7,67,&#x27;st-003&#x27;)">
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&h=300&fit=crop" alt="Charred Octopus" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Charred Octopus</p>
+          <p class="mg-price">₹16.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-003&#x27;,name:&#x27;Charred Octopus&#x27;,price:16.99,image:&#x27;https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Smoked Tomato Soup&#x27;,&#x27;https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Fire-roasted tomatoes slow-smoked with basil, finished with truffle oil.&#x27;,9.99,true,4.5,92,&#x27;st-004&#x27;)">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop" alt="Smoked Tomato Soup" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Smoked Tomato Soup</p>
+          <p class="mg-price">₹9.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-004&#x27;,name:&#x27;Smoked Tomato Soup&#x27;,price:9.99,image:&#x27;https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Crispy Calamari&#x27;,&#x27;https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Flash-fried calamari dusted with smoked paprika, served with chipotle aioli.&#x27;,12.99,false,4.6,156,&#x27;st-005&#x27;)">
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&h=300&fit=crop" alt="Crispy Calamari" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Crispy Calamari</p>
+          <p class="mg-price">₹12.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-005&#x27;,name:&#x27;Crispy Calamari&#x27;,price:12.99,image:&#x27;https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Flame-Grilled Halloumi&#x27;,&#x27;https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Halloumi cheese grilled until golden, drizzled with honey and za\&#x27;atar spice.&#x27;,11.99,true,4.4,78,&#x27;st-006&#x27;)">
+        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=300&fit=crop" alt="Flame-Grilled Halloumi" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Flame-Grilled Halloumi</p>
+          <p class="mg-price">₹11.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;st-006&#x27;,name:&#x27;Flame-Grilled Halloumi&#x27;,price:11.99,image:&#x27;https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="cat-title">Mains</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Smoked Brisket&#x27;,&#x27;https://images.unsplash.com/photo-1544025162-d76694265947?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;12-hour oak-smoked brisket with house BBQ rub, served with pickled slaw and cornbread.&#x27;,28.99,false,4.9,234,&#x27;mc-001&#x27;)">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Smoked Brisket" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Smoked Brisket</p>
+          <p class="mg-price">₹28.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-001&#x27;,name:&#x27;Smoked Brisket&#x27;,price:28.99,image:&#x27;https://images.unsplash.com/photo-1544025162-d76694265947?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Fire-Roasted Salmon&#x27;,&#x27;https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Atlantic salmon fillet roasted over cedar plank, with citrus-herb butter and asparagus.&#x27;,26.99,false,4.7,178,&#x27;mc-003&#x27;)">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Fire-Roasted Salmon" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Fire-Roasted Salmon</p>
+          <p class="mg-price">₹26.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-003&#x27;,name:&#x27;Fire-Roasted Salmon&#x27;,price:26.99,image:&#x27;https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Ember-Roasted Chicken&#x27;,&#x27;https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Half chicken marinated in yogurt &amp; spices, roasted over embers until golden and juicy.&#x27;,22.99,false,4.6,198,&#x27;mc-004&#x27;)">
+        <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop" alt="Ember-Roasted Chicken" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Ember-Roasted Chicken</p>
+          <p class="mg-price">₹22.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-004&#x27;,name:&#x27;Ember-Roasted Chicken&#x27;,price:22.99,image:&#x27;https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Wild Mushroom Stroganoff&#x27;,&#x27;https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Mixed wild mushrooms in a smoked paprika cream sauce over herbed pappardelle.&#x27;,19.99,true,4.5,134,&#x27;mc-005&#x27;)">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop" alt="Wild Mushroom Stroganoff" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Wild Mushroom Stroganoff</p>
+          <p class="mg-price">₹19.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-005&#x27;,name:&#x27;Wild Mushroom Stroganoff&#x27;,price:19.99,image:&#x27;https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Spiced Duck Breast&#x27;,&#x27;https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Crispy-skinned duck breast with cherry-chipotle glaze and roasted root vegetables.&#x27;,32.99,false,4.8,112,&#x27;mc-008&#x27;)">
+        <img src="https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=400&h=300&fit=crop" alt="Spiced Duck Breast" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Spiced Duck Breast</p>
+          <p class="mg-price">₹32.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-008&#x27;,name:&#x27;Spiced Duck Breast&#x27;,price:32.99,image:&#x27;https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="cat-title">Grills</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Charcoal-Grilled Ribeye&#x27;,&#x27;https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;14oz prime ribeye seared over mesquite charcoal, with roasted bone marrow butter.&#x27;,38.99,false,4.9,312,&#x27;mc-002&#x27;)">
+        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop" alt="Charcoal-Grilled Ribeye" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Charcoal-Grilled Ribeye</p>
+          <p class="mg-price">₹38.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-002&#x27;,name:&#x27;Charcoal-Grilled Ribeye&#x27;,price:38.99,image:&#x27;https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Lamb Kofta Kebab&#x27;,&#x27;https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Spiced ground lamb skewers grilled over charcoal, with tzatziki and warm flatbread.&#x27;,24.99,false,4.8,156,&#x27;mc-006&#x27;)">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop" alt="Lamb Kofta Kebab" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Lamb Kofta Kebab</p>
+          <p class="mg-price">₹24.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-006&#x27;,name:&#x27;Lamb Kofta Kebab&#x27;,price:24.99,image:&#x27;https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;non-veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Grilled Eggplant Steak&#x27;,&#x27;https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Thick-cut eggplant charred with miso glaze, sesame, and scallions over forbidden rice.&#x27;,17.99,true,4.4,89,&#x27;mc-007&#x27;)">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&fit=crop" alt="Grilled Eggplant Steak" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Grilled Eggplant Steak</p>
+          <p class="mg-price">₹17.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;mc-007&#x27;,name:&#x27;Grilled Eggplant Steak&#x27;,price:17.99,image:&#x27;https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="cat-title">Sides</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Truffle Fries&#x27;,&#x27;https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Crispy fries tossed with truffle oil, parmesan, and fresh herbs.&#x27;,8.99,true,4.7,267,&#x27;sd-001&#x27;)">
+        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop" alt="Truffle Fries" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Truffle Fries</p>
+          <p class="mg-price">₹8.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;sd-001&#x27;,name:&#x27;Truffle Fries&#x27;,price:8.99,image:&#x27;https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Smoked Mac &amp; Cheese&#x27;,&#x27;https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Three-cheese blend with smoked gouda, topped with crispy breadcrumbs.&#x27;,9.99,true,4.6,198,&#x27;sd-002&#x27;)">
+        <img src="https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=400&h=300&fit=crop" alt="Smoked Mac &amp; Cheese" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Smoked Mac &amp; Cheese</p>
+          <p class="mg-price">₹9.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;sd-002&#x27;,name:&#x27;Smoked Mac &amp; Cheese&#x27;,price:9.99,image:&#x27;https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Charred Broccolini&#x27;,&#x27;https://images.unsplash.com/photo-1510627489930-0c1b0bfb6785?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Broccolini charred with garlic, chili flakes, and lemon.&#x27;,7.99,true,4.3,87,&#x27;sd-003&#x27;)">
+        <img src="https://images.unsplash.com/photo-1510627489930-0c1b0bfb6785?w=400&h=300&fit=crop" alt="Charred Broccolini" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Charred Broccolini</p>
+          <p class="mg-price">₹7.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;sd-003&#x27;,name:&#x27;Charred Broccolini&#x27;,price:7.99,image:&#x27;https://images.unsplash.com/photo-1510627489930-0c1b0bfb6785?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Corn &amp; Jalapeño Elote&#x27;,&#x27;https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Fire-roasted corn with crema, cotija cheese, lime, and jalapeño.&#x27;,8.49,true,4.5,134,&#x27;sd-004&#x27;)">
+        <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&h=300&fit=crop" alt="Corn &amp; Jalapeño Elote" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Corn &amp; Jalapeño Elote</p>
+          <p class="mg-price">₹8.49</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;sd-004&#x27;,name:&#x27;Corn &amp; Jalapeño Elote&#x27;,price:8.49,image:&#x27;https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="cat-title">Desserts</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Smoked Chocolate Lava Cake&#x27;,&#x27;https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Warm dark chocolate cake with a molten center, smoked with hickory and vanilla ice cream.&#x27;,11.99,true,4.9,212,&#x27;ds-001&#x27;)">
+        <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" alt="Smoked Chocolate Lava Cake" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Smoked Chocolate Lava Cake</p>
+          <p class="mg-price">₹11.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;ds-001&#x27;,name:&#x27;Smoked Chocolate Lava Cake&#x27;,price:11.99,image:&#x27;https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Fire-Toasted S\&#x27;mores&#x27;,&#x27;https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;House-made graham cracker, torched marshmallow, and dark chocolate ganache.&#x27;,9.99,true,4.7,156,&#x27;ds-002&#x27;)">
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop" alt="Fire-Toasted S&#x27;mores" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Fire-Toasted S&#x27;mores</p>
+          <p class="mg-price">₹9.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;ds-002&#x27;,name:&#x27;Fire-Toasted S\&#x27;mores&#x27;,price:9.99,image:&#x27;https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Grilled Peach &amp; Honey&#x27;,&#x27;https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Caramelized peaches with honey, mascarpone, and toasted almonds.&#x27;,10.99,true,4.6,98,&#x27;ds-003&#x27;)">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop" alt="Grilled Peach &amp; Honey" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Grilled Peach &amp; Honey</p>
+          <p class="mg-price">₹10.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;ds-003&#x27;,name:&#x27;Grilled Peach &amp; Honey&#x27;,price:10.99,image:&#x27;https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Ember-Baked Cheesecake&#x27;,&#x27;https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Creamy New York cheesecake with a burnt honey top and berry compote.&#x27;,10.99,true,4.8,145,&#x27;ds-004&#x27;)">
+        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=300&fit=crop" alt="Ember-Baked Cheesecake" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Ember-Baked Cheesecake</p>
+          <p class="mg-price">₹10.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;ds-004&#x27;,name:&#x27;Ember-Baked Cheesecake&#x27;,price:10.99,image:&#x27;https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="cat-title">Beverages</h3>
+    <div class="menu-grid">
+      <div class="mg-card" onclick="openModal(&#x27;Smoked Old Fashioned&#x27;,&#x27;https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Bourbon, smoked maple syrup, bitters, and orange peel — tableside smoked.&#x27;,16.99,true,4.8,178,&#x27;bv-001&#x27;)">
+        <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&h=300&fit=crop" alt="Smoked Old Fashioned" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Smoked Old Fashioned</p>
+          <p class="mg-price">₹16.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;bv-001&#x27;,name:&#x27;Smoked Old Fashioned&#x27;,price:16.99,image:&#x27;https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Fire-Roasted Lemonade&#x27;,&#x27;https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Fresh lemonade with fire-roasted lemons, rosemary, and a hint of honey.&#x27;,5.99,true,4.5,123,&#x27;bv-002&#x27;)">
+        <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" alt="Fire-Roasted Lemonade" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Fire-Roasted Lemonade</p>
+          <p class="mg-price">₹5.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;bv-002&#x27;,name:&#x27;Fire-Roasted Lemonade&#x27;,price:5.99,image:&#x27;https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Charcoal Latte&#x27;,&#x27;https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Espresso with activated charcoal, steamed oat milk, and a touch of vanilla.&#x27;,6.99,true,4.3,89,&#x27;bv-003&#x27;)">
+        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop" alt="Charcoal Latte" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Charcoal Latte</p>
+          <p class="mg-price">₹6.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;bv-003&#x27;,name:&#x27;Charcoal Latte&#x27;,price:6.99,image:&#x27;https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Spiced Chai Ember&#x27;,&#x27;https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;House-made chai with cinnamon, cardamom, star anise, and a smoked honey rim.&#x27;,5.99,true,4.6,112,&#x27;bv-004&#x27;)">
+        <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=300&fit=crop" alt="Spiced Chai Ember" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Spiced Chai Ember</p>
+          <p class="mg-price">₹5.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;bv-004&#x27;,name:&#x27;Spiced Chai Ember&#x27;,price:5.99,image:&#x27;https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+      <div class="mg-card" onclick="openModal(&#x27;Ember Mule&#x27;,&#x27;https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&amp;h=300&amp;fit=crop&#x27;,&#x27;Vodka, ginger beer, lime, and a smoked chili rim.&#x27;,14.99,true,4.7,134,&#x27;bv-005&#x27;)">
+        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop" alt="Ember Mule" loading="lazy">
+        <div class="mg-body">
+          <p class="mg-name">Ember Mule</p>
+          <p class="mg-price">₹14.99</p>
+          <button class="mg-add" aria-label="Add to cart" onclick="event.stopPropagation();Cart.add({id:&#x27;bv-005&#x27;,name:&#x27;Ember Mule&#x27;,price:14.99,image:&#x27;https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&amp;h=300&amp;fit=crop&#x27;,type:&#x27;veg&#x27;,quantity:1})">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav id="bottom-nav">
+  <a href="index.html" class="nav-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="index.html#full-menu" class="nav-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <span>Menu</span>
+  </a>
+  <a href="order.html" class="nav-item center-btn" aria-label="Cart">
+    <span class="center-plus">+</span>
+  </a>
+  <a href="book-table.html" class="nav-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span>Reserve</span>
+  </a>
+  <a href="about.html" class="nav-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>About</span>
+  </a>
+</nav>
+
+<!-- FOOD ITEM POPUP -->
+<div id="food-modal" class="modal-overlay" style="display:none">
+  <div class="modal-card">
+    <img id="modal-img" src="" alt=""/>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span id="modal-tag" class="veg-tag"></span>
+      <h2 id="modal-name"></h2>
+      <p id="modal-desc"></p>
+      <div class="modal-rating">
+        <span id="modal-stars"></span>
+        <span id="modal-reviews"></span>
+      </div>
+      <p id="modal-price" class="modal-price"></p>
+      <div class="modal-actions">
+        <button onclick="changeQty(-1)" aria-label="Decrease quantity">&minus;</button>
+        <span id="modal-qty">1</span>
+        <button onclick="changeQty(1)" aria-label="Increase quantity">+</button>
+        <button class="add-cart-btn" onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/razorpay.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ===== FOOD MODAL ===== */
+let currentItem = {};
+let qty = 1;
+function openModal(name, img, desc, price, veg, rating, reviews, id) {
+  currentItem = {name, img, price, veg, id};
+  qty = 1;
+  document.getElementById('modal-img').src = img;
+  document.getElementById('modal-img').alt = name;
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-desc').textContent = desc;
+  document.getElementById('modal-price').textContent = '\u20B9' + price;
+  document.getElementById('modal-tag').textContent = veg ? 'VEG' : 'NON-VEG';
+  document.getElementById('modal-tag').style.background = veg ? '#2e7d32' : '#c62828';
+  document.getElementById('modal-stars').textContent = '\u2605'.repeat(Math.round(rating));
+  document.getElementById('modal-reviews').textContent = rating + ' (' + reviews + ' reviews)';
+  document.getElementById('modal-qty').textContent = 1;
+  document.getElementById('food-modal').style.display = 'flex';
+}
+function closeModal() { document.getElementById('food-modal').style.display = 'none'; }
+function changeQty(d) { qty = Math.max(1, qty + d); document.getElementById('modal-qty').textContent = qty; }
+function addToCart() {
+  if (currentItem.name && typeof Cart !== 'undefined') {
+    Cart.add({
+      id: currentItem.id || ('item-' + currentItem.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')),
+      name: currentItem.name,
+      price: currentItem.price,
+      image: currentItem.img,
+      type: currentItem.veg ? 'veg' : 'non-veg',
+      quantity: qty
+    });
+  }
+  closeModal();
+}
+document.getElementById('food-modal').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
+
+/* ===== SCROLL LOCK FIX (bottom sheet) ===== */
+const sheet = document.getElementById('bottom-sheet');
+const hero = document.getElementById('hero');
+window.addEventListener('scroll', () => {
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (window.scrollY >= heroBottom - 100) {
+    sheet.style.overflowY = 'auto';
+  } else {
+    sheet.style.overflowY = 'hidden';
+  }
+});
+
+/* ===== TOP NAVBAR scrolled state ===== */
+const topNav = document.getElementById('top-navbar');
+window.addEventListener('scroll', () => {
+  topNav.classList.toggle('scrolled', window.scrollY > 50);
+});
+</script>
+</body>
+</html>

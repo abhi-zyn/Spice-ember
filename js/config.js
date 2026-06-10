@@ -132,7 +132,7 @@ const Utils = {
     container.className = 'toast-container';
     container.innerHTML = `
       <div class="toast toast-${type}">
-        <span class="toast-icon">${type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'}</span>
+        <span class="toast-icon">${type === 'success' ? '✓' : type === 'error' ? '✕' : 'i'}</span>
         <span class="toast-message">${message}</span>
       </div>
     `;
@@ -235,7 +235,6 @@ const Utils = {
     const toggle = () => {
       mobileMenu.classList.toggle('open');
       overlay.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
     };
 
     menuBtn.addEventListener('click', toggle);

@@ -143,7 +143,7 @@ const RazorpayPayment = {
       description: `Order for ${orderDetails.customer_name || "Guest"}`,
       order_id: order_id,
       image:
-        "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>",
+        "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C9A84C' d='M12 2C9 7 6 9.5 6 14a6 6 0 0 0 12 0c0-4.5-3-7-6-12zm0 18a4 4 0 0 1-4-4c0-2.5 1.5-4.3 4-7.5 2.5 3.2 4 5 4 7.5a4 4 0 0 1-4 4z'/></svg>",
       prefill: {
         name: orderDetails.customer_name || "",
         email: orderDetails.customer_email || "",
